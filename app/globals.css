@@ -1,26 +1,22 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* class-based dark mode: we toggle .dark on <html> ourselves */
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --color-ink: #2B2D53;
+  --color-periwinkle: #F4F5FE;
+  --color-pale-lilac: #EFF0FF;
+  --color-message-blue: #E2E4FF;
+  --color-sky: #A6B0F0;
+  --color-blue: #8B93E8;
+  --color-pink: #FF79C6;
+  --color-pink-soft: #FF9DD1;
+  --color-mint: #8FE3C4;
+  --color-mint-soft: #BFEDE0;
+  --color-peach: #F2CFB8;
+  --color-violet: #C4A8E8;
+  --color-fog: #F0F1FF;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segeo UI", Inter, sans-serif;
 }
