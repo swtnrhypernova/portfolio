@@ -36,7 +36,7 @@ export function DynamicIsland() {
 
         <div className="flex items-center gap-1.5 shrink-0">
           <a
-            href="/cv.pdf"
+            href="@/assets/Chisom_Jennifer_Okoroafor_CV.pdf"
             className="flex items-center gap-1.5 rounded-full bg-pink px-2.5 py-1 text-[11px] hover:scale-105 transition-transform"
           >
             {!scrolled && "CV"}

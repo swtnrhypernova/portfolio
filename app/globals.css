@@ -20,3 +20,17 @@
 
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segeo UI", Inter, sans-serif;
 }
+
+@keyframes shimmer {
+  0% {background-position: 0% 50%; }
+  100% {background-position: 220% 50%; }
+}
+
+.shimmer-text {
+  background: linear-gradient(100deg, #FF9DD1, #A6B0F0, #E2E4FF, #FF9DD1);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 9s infinite linear;
+}

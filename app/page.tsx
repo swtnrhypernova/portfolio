@@ -2,6 +2,7 @@
 
 import { useTheme } from "./theme-provider";
 import { DynamicIsland } from "@/components/DynamicIsland";
+import LockScreen from "@/components/LockScreen";
 
 export default function Home() {
   const { isDark, setMode, mode } = useTheme();
@@ -9,15 +10,13 @@ export default function Home() {
   return (
     <>
       <DynamicIsland />
-      <main className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <h1 className="text-4xl font-bold tracking-tighter">jenn.dev</h1>
-        <p className="text-pink">palette loaded - {isDark ? "dark" : "light"} mode </p>
-        <button
-          onClick={() => setMode(isDark ? "light" : "dark")}
-          className="rounded-full px-5 py-2 bg-pink text-white hover:scale-105 transition-transform"
-        >
-          Toggle theme
-        </button>
+      <main id="top">
+        <LockScreen />
+
+        {/* placeholder for the rest of the page content */}
+        <section id="desktop" className="h-screen flex items-center justify-center text-ink/50 dark:text-fog/50">
+        desktop goes here
+        </section>
       </main>
     </>
   );
