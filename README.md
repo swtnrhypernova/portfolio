@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# jenn.dev — a macOS-style developer portfolio
 
-## Getting Started
+**Live site → https://your-site.vercel.app**
 
-First, run the development server:
+A portfolio that behaves like a Mac desktop: a lock screen with a live clock, a Dynamic Island nav that shrinks on scroll, macOS windows with traffic lights, a fish-eye dock, and an iMessage-style contact window — built from scratch in Next.js, with light/dark themes and pastel "Sayonani × Apple" styling.
+
+## Features
+
+- 🔐 **Lock screen hero** — live clock, pulsing avatar ring, "Enter Password" pill that unlocks/scrolls into the desktop
+- 🖥 **Dynamic Island nav** — shrinks on scroll, one-click CV download, theme toggle
+- 🗂 **Mac windows** — traffic lights, scroll-reveal animations, `stack.txt`, `about.txt`, `results.zip`, and a bento projects grid
+- 🐟 **macOS dock** — spring-physics fish-eye magnification with name tooltips
+- 💬 **iMessage-style contact** — chat-bubble UI with email and social links
+- 🌗 **Light & dark themes** — system-aware, persisted, pastel palette throughout
+- 📄 **CV download** — served from the site, one click from island or dock
+
+## Built with
+
+- **Next.js 16** (App Router) + **TypeScript**
+- **Tailwind CSS v4** (custom pastel design tokens)
+- **Framer Motion** (entrance, scroll-reveal, and spring animations)
+
+## Projects showcased
+   Project | What it is |
+ | --- | --- |
+ | [Auctionary](https://github.com/swtnrhypernova/auctionary-showcase) | Full-stack auction platform — Vue, Node, Express, SQLite |
+ | [TechCord](https://techcord-website.vercel.app) | Team-built news platform + Discord bot — live on Vercel |
+ | [Board Game Simulation](https://github.com/swtnrhypernova/board-game-simulation-showcase) | Java 21 console game with Strategy/Observer/Decorator patterns |
+
+## Run it locally
 
 ```bash
+git clone https://github.com/swtnrhypernova/portfolio.git
+cd portfolio
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  page.tsx            # lock screen, desktop grid, bento, messages, footer
+  layout.tsx          # fonts, theme provider
+  globals.css         # Tailwind theme tokens + dark variant
+components/
+  LockScreen.tsx      # live clock + unlock pill
+  DynamicIsland.tsx   # shrinking nav
+  MacWindow.tsx       # traffic-light window shell
+  Wallpaper.tsx       # drifting pastel blobs
+  Dock.tsx            # fish-eye dock
+```
 
-## Learn More
+## Contact
 
-To learn more about Next.js, take a look at the following resources:
+- **Email:** jennifer.okoroaforx@gmail.com
+- **GitHub:** https://github.com/swtnrhypernova
+- **LinkedIn:** https://www.linkedin.com/in/swtnrhypernova
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 Chisom Jennifer Okoroafor
