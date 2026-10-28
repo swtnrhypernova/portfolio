@@ -34,9 +34,9 @@ const STACK = [
 
 const MODULES = [
   { name: "Object-Oriented Programming", score: 95 },
-  { name: "Web Technologies", score: 94 },
-  { name: "Software Design & Architecture", score: 92 },
-  { name: "Data Structures & Algorithms", score: 85 },
+  { name: "Web Development", score: 94 },
+  { name: "Software Design & Architecture", score: 85 },
+  { name: "Mathematics", score: 92 },
 ];
 
 export default function Home() {
