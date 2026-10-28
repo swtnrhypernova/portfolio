@@ -1,9 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import { motion } from "framer-motion";
 
 const SMOOTH = [0.22, 1, 0.36, 1] as const;
+
+type DockItem = {
+  label: string;
+  href: string;
+  Icon: ComponentType;
+  bg: string;
+  i: number;
+  cv?: boolean;
+  divider?: boolean;
+};
 
 // ---------- Icons ----------
 function BracesIcon() {
@@ -28,21 +38,40 @@ function DownloadIcon() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>;
 }
 
-const ITEMS = [
-  { label: "Stack", href: "#desktop", Icon: BracesIcon, bg: "linear-gradient(180deg,#AAB4F2,#8B93E8)" },
-  { label: "About", href: "#desktop", Icon: PersonIcon, bg: "linear-gradient(180deg,#FFA5D6,#FF85C2)" },
-  { label: "Projects", href: "#projects", Icon: FolderIcon, bg: "linear-gradient(180deg,#ADF0DC,#8FE3C4)" },
-  { label: "Results", href: "#desktop", Icon: ChartIcon, bg: "linear-gradient(180deg,#D2BCF0,#C4A8E8)" },
-  { label: "Messages", href: "#contact", Icon: ChatIcon, bg: "linear-gradient(180deg,#E8EAFB,#D8DCF6)" },
-  { label: "Email", href: "mailto:jennifer.okoroaforx@gmail.com", Icon: MailIcon, bg: "linear-gradient(180deg,#8A92E0,#737CC9)" },
+const ITEMS: DockItem[] = [
+  {
+    label: "Stack", href: "#desktop", Icon: BracesIcon, bg: "linear-gradient(180deg,#AAB4F2,#8B93E8)",
+    i: 0
+  },
+  {
+    label: "About", href: "#desktop", Icon: PersonIcon, bg: "linear-gradient(180deg,#FFA5D6,#FF85C2)",
+    i: 0
+  },
+  {
+    label: "Projects", href: "#projects", Icon: FolderIcon, bg: "linear-gradient(180deg,#ADF0DC,#8FE3C4)",
+    i: 0
+  },
+  {
+    label: "Results", href: "#desktop", Icon: ChartIcon, bg: "linear-gradient(180deg,#D2BCF0,#C4A8E8)",
+    i: 0
+  },
+  {
+    label: "Messages", href: "#contact", Icon: ChatIcon, bg: "linear-gradient(180deg,#E8EAFB,#D8DCF6)",
+    i: 0
+  },
+  {
+    label: "Email", href: "mailto:jennifer.okoroaforx@gmail.com", Icon: MailIcon, bg: "linear-gradient(180deg,#8A92E0,#737CC9)",
+    i: 0
+  },
 ];
 
 export default function Dock() {
   const [hovered, setHovered] = useState<number | null>(null);
-  const dockItems = [
+
+  const dockItems: DockItem[] = [
     ...ITEMS.map((it, i) => ({ ...it, i })),
-    { divider: true },
-    { label: "Download CV", href: "/cv.pdf", Icon: DownloadIcon, bg: "linear-gradient(180deg,#3E4380,#2B2D53)", cv: true, i: ITEMS.length },
+    { divider: true, label: "", href: "#", Icon: BracesIcon, bg: "transparent", i: -1 },
+    { label: "Download CV", href: "/Chisom_Jennifer_Okoroafor_CV.pdf", cv: true, Icon: DownloadIcon, bg: "linear-gradient(180deg,#3E4380,#2B2D53)", i: ITEMS.length },
   ];
 
   return (
@@ -58,12 +87,13 @@ export default function Dock() {
         onMouseLeave={() => setHovered(null)}
       >
         {dockItems.map((item, idx) =>
-          "divider" in item ? (
+          item.divider ? (
             <span key={`div-${idx}`} className="mx-1.5 h-10 w-[1.5px] self-center bg-ink/20 dark:bg-white/15" />
           ) : (
             <motion.a
               key={item.label}
               href={item.href}
+              download={item.cv ? "Chisom_Jennifer_Okoroafor_CV.pdf" : undefined}
               onMouseEnter={() => setHovered(item.i)}
               animate={{
                 scale:
@@ -84,7 +114,6 @@ export default function Dock() {
               transition={{ type: "spring", stiffness: 380, damping: 26 }}
               className="relative flex flex-col items-center"
             >
-              {/* macOS-style name tooltip */}
               {hovered === item.i && (
                 <motion.div
                   initial={{ opacity: 0, y: 6, scale: 0.9 }}

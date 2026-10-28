@@ -1,10 +1,14 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { DynamicIsland } from "@/components/DynamicIsland";
 import LockScreen from "@/components/LockScreen";
 import MacWindow from "@/components/MacWindow";
 import Wallpaper from "@/components/Wallpaper";
 import Dock from "@/components/Dock";
+
+const SMOOTH = [0.22, 1, 0.36, 1] as const;
+const SOFT_GRAD = "linear-gradient(135deg,#FF9DD1 0%,#E2B8EC 50%,#A6B0F0 100%)";
 
 function Dot({ color, size = 8 }: { color: string; size?: number }) {
   return (
@@ -35,8 +39,6 @@ const MODULES = [
   { name: "Data Structures & Algorithms", score: 85 },
 ];
 
-const SOFT_GRAD = "linear-gradient(135deg,#FF9DD1 0%,#E2B8EC 50%,#A6B0F0 100%)";
-
 export default function Home() {
   return (
     <>
@@ -47,20 +49,30 @@ export default function Home() {
 
         <section id="desktop" className="mx-auto max-w-5xl scroll-mt-24 px-4 pb-16 md:px-6">
           {/* availability pill */}
-          <div className="mb-5 flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, ease: SMOOTH }}
+            className="mb-5 flex justify-center"
+          >
             <span className="inline-flex items-center gap-2 rounded-full border border-[#D9DCF5] bg-white/70 px-4 py-1.5 text-xs text-ink/60 dark:border-white/10 dark:bg-white/[0.06] dark:text-fog/60">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#5FD48A]" />
               Open to graduate software engineer roles · Manchester
             </span>
-          </div>
+          </motion.div>
 
           {/* row 1 — stack + about */}
           <div className="grid gap-5 md:grid-cols-2">
             <MacWindow title="stack.txt">
               <div className="flex flex-wrap gap-2.5">
-                {STACK.map((t) => (
-                  <span
+                {STACK.map((t, i) => (
+                  <motion.span
                     key={t.name}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 + i * 0.09, ease: SMOOTH }}
                     className="inline-flex items-center gap-2 rounded-full border border-[#D9DCF5] bg-white/70 px-3 py-1.5 text-xs font-medium text-ink dark:border-white/10 dark:bg-white/[0.06] dark:text-fog"
                   >
                     <span
@@ -68,7 +80,7 @@ export default function Home() {
                       style={{ backgroundColor: t.color }}
                     />
                     {t.name}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </MacWindow>
@@ -90,12 +102,22 @@ export default function Home() {
               <MacWindow title="projects — bento.grid">
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-6">
                   {/* Auctionary */}
-                  <a
+                  <motion.a
+                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.7, delay: 0.05, ease: SMOOTH }}
+                    whileHover={{ y: -5 }}
                     href="https://github.com/swtnrhypernova/auctionary-showcase"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative block overflow-hidden rounded-2xl border border-[#E2E4FF] bg-[#FBFBFF] p-5 sm:col-span-4 sm:row-span-2 dark:border-white/[0.08] dark:bg-white/[0.04]"
                   >
+                    <motion.div
+                      animate={{ scale: [1, 1.12, 1], opacity: [0.2, 0.35, 0.2] }}
+                      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute -bottom-16 -right-12 h-56 w-56 rounded-full bg-[radial-gradient(circle,#E2E4FF,transparent_65%)] blur-3xl dark:bg-[radial-gradient(circle,#8B93E8,transparent_65%)]"
+                    />
                     <div className="relative">
                       <div className="mb-4 flex gap-1.5">
                         {["#8FE3C4", "#A8E8C4", "#A8E8C4", "#D2C4EE"].map((c, j) => <Dot key={j} color={c} />)}
@@ -115,10 +137,15 @@ export default function Home() {
                       </div>
                       <p className="mt-3 text-xs font-medium text-[#D6549A] dark:text-pink">Read the case study →</p>
                     </div>
-                  </a>
+                  </motion.a>
 
                   {/* TechCord */}
-                  <a
+                  <motion.a
+                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.7, delay: 0.16, ease: SMOOTH }}
+                    whileHover={{ y: -5 }}
                     href="https://techcord-website.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -135,10 +162,16 @@ export default function Home() {
                     <p className="mt-3 text-[10px] font-medium uppercase tracking-wide text-[#D6549A] dark:text-pink">
                       Live on Vercel
                     </p>
-                  </a>
+                  </motion.a>
 
                   {/* content creation stat */}
-                  <div className="flex flex-col justify-between rounded-2xl border border-[#E2E4FF] bg-[#FBFBFF] p-5 sm:col-span-2 dark:border-white/[0.08] dark:bg-white/[0.04]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.7, delay: 0.24, ease: SMOOTH }}
+                    className="flex flex-col justify-between rounded-2xl border border-[#E2E4FF] bg-[#FBFBFF] p-5 sm:col-span-2 dark:border-white/[0.08] dark:bg-white/[0.04]"
+                  >
                     <p className="mb-3 text-xs uppercase tracking-[0.18em] text-ink/60 dark:text-fog/60">Beyond code</p>
                     <div>
                       <p className="text-3xl font-bold tracking-tight">298k</p>
@@ -146,10 +179,15 @@ export default function Home() {
                         views on a video I edited — from 1,500 followers I grew myself.
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Board Game Simulation */}
-                  <a
+                  <motion.a
+                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.7, delay: 0.32, ease: SMOOTH }}
+                    whileHover={{ y: -5 }}
                     href="https://github.com/swtnrhypernova/board-game-simulation-showcase"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -166,10 +204,21 @@ export default function Home() {
                     <p className="mt-3 text-[10px] font-medium uppercase tracking-wide text-[#D6549A] dark:text-pink">
                       85% · Software Design & Architecture
                     </p>
-                  </a>
+                  </motion.a>
 
                   {/* next project placeholder */}
-                  <div className="relative overflow-hidden rounded-2xl border-[1.5px] border-dashed border-[#C4C9EF] bg-[#FDFDFF] p-5 sm:col-span-3 dark:border-white/15 dark:bg-white/[0.02]">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.7, delay: 0.4, ease: SMOOTH }}
+                    className="relative overflow-hidden rounded-2xl border-[1.5px] border-dashed border-[#C4C9EF] bg-[#FDFDFF] p-5 sm:col-span-3 dark:border-white/15 dark:bg-white/[0.02]"
+                  >
+                    <motion.div
+                      animate={{ opacity: [0.1, 0.22, 0.1] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-0 bg-pink"
+                    />
                     <div className="relative">
                       <div className="mb-3 flex gap-1.5">
                         {["#C4CBF4", "#8B93E8"].map((c, j) => <Dot key={j} color={c} size={7} />)}
@@ -179,7 +228,7 @@ export default function Home() {
                         A new build is coming for this tile. Watch this space — or check GitHub for the first commits.
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </MacWindow>
             </div>
@@ -190,16 +239,20 @@ export default function Home() {
               <MacWindow title="results.zip">
                 <p className="mb-4 text-xs uppercase tracking-[0.18em] text-ink/60 dark:text-fog/60">Modules & results</p>
                 <div className="space-y-3.5">
-                  {MODULES.map((m) => (
+                  {MODULES.map((m, i) => (
                     <div key={m.name}>
                       <div className="mb-1 flex justify-between text-xs">
                         <span>{m.name}</span>
                         <span className="text-[#D6549A] dark:text-pink">{m.score}%</span>
                       </div>
                       <div className="h-1.5 overflow-hidden rounded-full bg-[#E2E4FF] dark:bg-white/10">
-                        <div
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${m.score}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.2, delay: 0.3 + i * 0.12, ease: SMOOTH }}
                           className="h-full rounded-full"
-                          style={{ width: `${m.score}%`, background: SOFT_GRAD }}
+                          style={{ background: SOFT_GRAD }}
                         />
                       </div>
                     </div>
@@ -211,43 +264,38 @@ export default function Home() {
               <div id="contact" className="scroll-mt-24">
                 <MacWindow title="Jenn — Messages">
                   <div className="space-y-2.5">
-                    <div className="mr-auto max-w-[85%] rounded-2xl rounded-bl-md bg-[#EFF0FF] px-4 py-2.5 text-sm text-ink/85 dark:bg-white/10 dark:text-fog/85">
-                      Hi Jenn — are you open to graduate software engineer roles?
-                    </div>
-                    <div
-                      className="ml-auto max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm text-white"
-                      style={{ background: SOFT_GRAD }}
-                    >
-                      Absolutely — let&apos;s build something together.
-                    </div>
-                    <div className="mr-auto max-w-[85%] rounded-2xl rounded-bl-md bg-[#EFF0FF] px-4 py-2.5 text-sm text-ink/85 dark:bg-white/10 dark:text-fog/85">
-                      Great — how do I reach you?
-                    </div>
-                    <a
-                      href="mailto:jennifer.okoroaforx@gmail.com"
-                      className="ml-auto block max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-center text-sm text-white transition hover:opacity-90"
-                      style={{ background: SOFT_GRAD }}
-                    >
-                      jennifer.okoroaforx@gmail.com
-                    </a>
-                    <div className="ml-auto flex max-w-[85%] gap-2">
-                      <a
-                        href="https://github.com/swtnrhypernova"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 rounded-2xl bg-[#EFF0FF] px-4 py-2.5 text-center text-sm dark:bg-white/10"
+                    {[
+                      <div key="a" className="mr-auto max-w-[85%] rounded-2xl rounded-bl-md bg-[#EFF0FF] px-4 py-2.5 text-sm text-ink/85 dark:bg-white/10 dark:text-fog/85">
+                        Hi Jenn — are you open to graduate software engineer roles?
+                      </div>,
+                      <div key="b" className="ml-auto max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm text-white" style={{ background: SOFT_GRAD }}>
+                        Absolutely — let&apos;s build something together.
+                      </div>,
+                      <div key="c" className="mr-auto max-w-[85%] rounded-2xl rounded-bl-md bg-[#EFF0FF] px-4 py-2.5 text-sm text-ink/85 dark:bg-white/10 dark:text-fog/85">
+                        Great — how do I reach you?
+                      </div>,
+                      <a key="d" href="mailto:jennifer.okoroaforx@gmail.com"
+                        className="ml-auto block max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-center text-sm text-white transition hover:opacity-90"
+                        style={{ background: SOFT_GRAD }}>
+                        jennifer.okoroaforx@gmail.com
+                      </a>,
+                      <div key="e" className="ml-auto flex max-w-[85%] gap-2">
+                        <a href="https://github.com/swtnrhypernova" target="_blank" rel="noopener noreferrer"
+                          className="flex-1 rounded-2xl bg-[#EFF0FF] px-4 py-2.5 text-center text-sm dark:bg-white/10">GitHub</a>
+                        <a href="https://www.linkedin.com/in/swtnrhypernova" target="_blank" rel="noopener noreferrer"
+                          className="flex-1 rounded-2xl bg-[#EFF0FF] px-4 py-2.5 text-center text-sm dark:bg-white/10">LinkedIn</a>
+                      </div>,
+                    ].map((el, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 14 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.55, delay: 0.25 + i * 0.16, ease: SMOOTH }}
                       >
-                        GitHub
-                      </a>
-                      <a
-                        href="https://www.linkedin.com/in/swtnrhypernova"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 rounded-2xl bg-[#EFF0FF] px-4 py-2.5 text-center text-sm dark:bg-white/10"
-                      >
-                        LinkedIn
-                      </a>
-                    </div>
+                        {el}
+                      </motion.div>
+                    ))}
                   </div>
                 </MacWindow>
               </div>
@@ -255,9 +303,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* footer — outside the section now */}
+        {/* footer */}
         <footer className="px-4 pb-32 pt-2">
-          <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 rounded-[1.4rem] border border-[#D9DCF5] bg-white/80 px-6 py-5 backdrop-blur-xl md:flex-row dark:border-white/10 dark:bg-[#1c1d3a]/80">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 rounded-[1.4rem] border border-[#D9DCF5] bg-white/80 px-6 py-5 backdrop-blur-xl md:flex-row dark:border-white/10 dark:bg-[#1c1d3a]/80"
+          >
             <span className="text-sm font-semibold tracking-tight">
               jenn<span className="text-[#D6549A] dark:text-pink">.</span>dev
             </span>
@@ -270,7 +324,7 @@ export default function Home() {
             >
               jennifer.okoroaforx@gmail.com
             </a>
-          </div>
+          </motion.div>
         </footer>
       </main>
       <Dock />
