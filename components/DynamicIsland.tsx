@@ -20,7 +20,7 @@ export function DynamicIsland() {
         style={{ boxShadow: "0 10px 40px rgba(43,45,83,0.4)" }}
       >
         <a href="#top" className="shrink-0 text-xs font-semibold tracking-tight">
-          jenn<span className="text-pink">.</span>dev
+          jennnova
         </a>
 
         <div className={`items-center gap-5 text-xs ${scrolled ? "hidden" : "flex"}`}>

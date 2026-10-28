@@ -1,6 +1,6 @@
-# jenn.dev — a macOS-style developer portfolio
+# jennnova — a macOS-style developer portfolio
 
-**Live site → https://your-site.vercel.app**
+**Live site → https://jennnova.vercel.app/**
 
 A portfolio that behaves like a Mac desktop: a lock screen with a live clock, a Dynamic Island nav that shrinks on scroll, macOS windows with traffic lights, a fish-eye dock, and an iMessage-style contact window — built from scratch in Next.js, with light/dark themes and pastel "Sayonani × Apple" styling.
 

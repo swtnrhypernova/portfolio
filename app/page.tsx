@@ -313,7 +313,7 @@ export default function Home() {
             className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 rounded-[1.4rem] border border-[#D9DCF5] bg-white/80 px-6 py-5 backdrop-blur-xl md:flex-row dark:border-white/10 dark:bg-[#1c1d3a]/80"
           >
             <span className="text-sm font-semibold tracking-tight">
-              jenn<span className="text-[#D6549A] dark:text-pink">.</span>dev
+              jennnova
             </span>
             <span className="text-xs text-ink/60 dark:text-fog/60">
               © 2026 Chisom Jennifer Okoroafor · Manchester, UK · Sayonani × Apple
